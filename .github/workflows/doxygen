@@ -1,0 +1,24 @@
+name: 🚀 Doxygen
+
+on:
+  create:
+    tags:
+      - "v*.*"
+
+jobs:
+  run:
+    name: 🚀 Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🚀 Generate Doxyfile
+        shell: bash
+        run: |
+          doxygen Doxyfile
+          
+      - name: 🚀 Upload Artifact
+        uses: actions/upload-artifact@v3
